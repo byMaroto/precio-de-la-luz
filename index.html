@@ -1,12 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Precio de la luz</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <header>
+      <h1>Calculadora de consumo</h1>
+    </header>
+    <main>
+      <h2>Seleccione el aparato eléctrico</h2>
+      <p>
+        Elija uno de los aparatos eléctricos para conocer su consuma y el precio
+        estimado por hora:
+      </p>
+      <label for="aparatos">Elija el aparato:</label>
+      <select name="aparatos" id="aparatos">
+        <option value="nevera">Nevera</option>
+        <option value="ordenador">Ordenador</option>
+        <option value="tostadora">Tostadora</option>
+        <option value="microondas">Microondas</option>
+      </select>
+      <aside>
+        <figure>
+          <img
+            id="deviceImg"
+            src="img/istockphoto-1293879950-612x612.jpg"
+            width="200"
+            height="200"
+          />
+        </figure>
+      </aside>
+    </main>
+
+    <script src="/js/main.js"></script>
+  </body>
 </html>
