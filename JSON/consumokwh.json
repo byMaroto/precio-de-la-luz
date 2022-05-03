@@ -1,0 +1,106 @@
+[
+ {
+   "Aparato": "Aire acondicionado",
+   "Consumo": 700
+ },
+ {
+   "Aparato": "Aspiradora",
+   "Consumo": 900
+ },
+ {
+   "Aparato": "Batidora",
+   "Consumo": 250
+ },
+ {
+   "Aparato": "Bomba de agua",
+   "Consumo": 500
+ },
+ {
+   "Aparato": "Cafetera",
+   "Consumo": 700
+ },
+ {
+   "Aparato": "Calentador de agua",
+   "Consumo": 1500
+ },
+ {
+   "Aparato": "Cargador teléfono móvil",
+   "Consumo": 5
+ },
+ {
+   "Aparato": "Estufa eléctrica",
+   "Consumo": 2000
+ },
+ {
+   "Aparato": "Extractor de aire ",
+   "Consumo": 500
+ },
+ {
+   "Aparato": "Fogones inducción",
+   "Consumo": 1800
+ },
+ {
+   "Aparato": "Fogones vitrocerámica",
+   "Consumo": 2000
+ },
+ {
+   "Aparato": "Horno eléctrico",
+   "Consumo": 1200
+ },
+ {
+   "Aparato": "Horno microondas",
+   "Consumo": 1300
+ },
+ {
+   "Aparato": "Lavadora",
+   "Consumo": 900
+ },
+ {
+   "Aparato": "Lavaplatos ",
+   "Consumo": 1100
+ },
+ {
+   "Aparato": "Nevera",
+   "Consumo": 250
+ },
+ {
+   "Aparato": "PC portátil",
+   "Consumo": 35
+ },
+ {
+   "Aparato": "PC sobremesa",
+   "Consumo": 220
+ },
+ {
+   "Aparato": "Secador pelo",
+   "Consumo": 550
+ },
+ {
+   "Aparato": "Secadora de ropa",
+   "Consumo": 2000
+ },
+ {
+   "Aparato": "Tostadora pan",
+   "Consumo": 900
+ },
+ {
+   "Aparato": "TV 32\"",
+   "Consumo": 150
+ },
+ {
+   "Aparato": "TV 42\"",
+   "Consumo": 230
+ },
+ {
+   "Aparato": "TV 50\"",
+   "Consumo": 320
+ },
+ {
+   "Aparato": "Ventilador de techo",
+   "Consumo": 70
+ },
+ {
+   "Aparato": "Videocónsola",
+   "Consumo": 300
+ }
+]
