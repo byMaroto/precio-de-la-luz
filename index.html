@@ -15,20 +15,23 @@
     </header>
 
     <main>
-      <section>
-        <h2>Seleccione el aparato eléctrico</h2>
-        <p>
-          Elija uno de los aparatos eléctricos para conocer su consuma y el
-          precio estimado por hora:
-        </p>
-        <label for="aparatos">Elija el aparato:</label>
-        <select name="aparatos" id="aparatos">
-          <option value="nevera">Nevera</option>
-          <option value="ordenador">Ordenador</option>
-          <option value="tostadora">Tostadora</option>
-          <option value="microondas">Microondas</option>
-        </select>
-        <aside>
+      <section class="flex-container">
+        <section class="flex-top">
+          <h2>Seleccione el aparato eléctrico</h2>
+          <p>
+            Elija uno de los aparatos eléctricos para conocer su consuma y el
+            precio estimado por hora:
+          </p>
+        </section>
+
+        <section class="flex-left">
+          <label for="aparatos"><p>Elija el aparato:</p></label>
+          <select name="aparatos" id="aparatos">
+            <option value="nevera">Nevera</option>
+            <option value="ordenador">Ordenador</option>
+            <option value="tostadora">Tostadora</option>
+            <option value="microondas">Microondas</option>
+          </select>
           <figure>
             <img
               id="deviceImg"
@@ -37,7 +40,9 @@
               height="200"
             />
           </figure>
-        </aside>
+        </section>
+
+        <section class="flex-right"></section>
       </section>
     </main>
 

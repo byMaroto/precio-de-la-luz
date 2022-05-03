@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@100;400&display=swap");
 
 * {
   margin: 0;
@@ -12,6 +12,7 @@ ul {
 }
 
 h1 {
+  font-family: Bebas Neue;
   font-weight: 700;
   font-size: 36px;
 }
@@ -23,47 +24,65 @@ h2 {
 p {
   margin: 1rem 0;
 }
+
 body {
   min-height: 100vh;
-
   display: grid;
-
   grid-template-rows: 100px 1fr 50px;
-  grid-template-columns: 1fr 4fr;
-
   grid-template-areas:
-    "header header"
-    "aside main"
-    "footer footer";
+    "header"
+    "main"
+    "footer";
 }
 
 header,
 footer {
-  background-color: rgb(34, 61, 42);
+  background-color: black;
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: small;
-}
-
-aside,
-main {
-  padding: 1rem;
+  font-size: 10px;
 }
 
 header {
   grid-area: header;
 }
 
-aside {
-  grid-area: aside;
-}
-
 main {
+  padding: 2rem auto;
+  margin: 0 auto;
   grid-area: main;
 }
 
 footer {
   grid-area: footer;
+}
+
+img {
+  padding: 10px 0;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 2rem;
+}
+
+.flex-container > section {
+  padding: 8px;
+}
+
+.flex-top {
+  flex-basis: 100vw;
+  height: 120px;
+}
+
+.flex-left {
+  flex-grow: 1;
+}
+
+.flex-right {
+  flex-grow: 5;
 }
