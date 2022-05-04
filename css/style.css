@@ -22,7 +22,7 @@ h2 {
 }
 
 p {
-  margin: 1rem 0;
+  margin-bottom: 1rem;
 }
 
 body {
@@ -42,7 +42,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 header {
@@ -71,12 +71,12 @@ img {
 }
 
 .flex-container > section {
-  padding: 8px;
+  padding: 0px;
+  margin-top: 2rem;
 }
 
 .flex-top {
   flex-basis: 100vw;
-  height: 120px;
 }
 
 .flex-left {
@@ -84,5 +84,45 @@ img {
 }
 
 .flex-right {
-  flex-grow: 5;
+  flex-grow: 2;
+  border: solid 2px grey;
+  max-width: 500px;
+}
+
+.tg {
+  border: none;
+  border-collapse: collapse;
+  border-color: #ccc;
+  border-spacing: 0;
+  min-width: 100%;
+}
+.tg td {
+  background-color: #fff;
+  border-color: #ccc;
+  border-style: solid;
+  border-width: 0px;
+  color: #333;
+  font-size: 14px;
+  overflow: hidden;
+  padding: 10px 5px;
+  word-break: normal;
+}
+.tg th {
+  background-color: #f0f0f0;
+  border-color: #ccc;
+  border-style: solid;
+  border-width: 0px;
+  color: #333;
+  overflow: hidden;
+  padding: 10px 5px;
+  word-break: normal;
+}
+.tg .tg-buh4 {
+  background-color: #f9f9f9;
+  text-align: left;
+  vertical-align: top;
+}
+.tg .tg-0lax {
+  text-align: left;
+  vertical-align: top;
 }

@@ -17,38 +17,88 @@
     <main>
       <section class="flex-container">
         <section class="flex-top">
-          <h2>Seleccione el aparato eléctrico</h2>
+          <h2>Conozca el consumo eléctrico actual</h2>
           <p>
-            Elija uno de los aparatos eléctricos para conocer su consuma y el
-            precio estimado por hora:
+            A continuación encontrará una lista de aparatos eléctricos.
+            Seleccione alguno para saber cual es el precio de su consumo en este
+            momento:
           </p>
         </section>
 
         <section class="flex-left">
           <label for="aparatos"><p>Elija el aparato:</p></label>
           <select name="aparatos" id="aparatos">
-            <option value="nevera">Nevera</option>
-            <option value="ordenador">Ordenador</option>
-            <option value="tostadora">Tostadora</option>
+            <option selected="true" disabled="disabled">
+              Escoja de la siguiente lista:
+            </option>
+            <option value="aireacondicionado">Aire Acondicionado</option>
+            <option value="aspiradora">Aspiradora</option>
+            <option value="batidora">Batidora</option>
+            <option value="calentador">Calentador de Agua</option>
+            <option value="horno">Horno</option>
+            <option value="impresora">Impresora</option>
+            <option value="lampara">Lámpara</option>
+            <option value="lavaplatos">Lavaplatos</option>
+            <option value="lavarropas">Lavarropas</option>
+            <option value="licuadora">Licuadora</option>
             <option value="microondas">Microondas</option>
+            <option value="nevera">Nevera</option>
+            <option value="pcsobremesa">PC de Sobremesa</option>
+            <option value="plancha">Plancha</option>
+            <option value="portatil">Portatil</option>
+            <option value="secador">Secador de Cabello</option>
+            <option value="smarttv">Smart TV</option>
+            <option value="telefono">Teléfono</option>
+            <option value="tostadora">Tostadora</option>
+            <option value="ventilador">Ventilador de Pie</option>
+            <option value="vitro">Vitrocerámica</option>
           </select>
           <figure>
             <img
               id="deviceImg"
-              src="img/istockphoto-1293879950-612x612.jpg"
+              src="img/default.jpg"
               width="200"
               height="200"
             />
           </figure>
         </section>
 
-        <section class="flex-right"></section>
+        <section class="flex-right">
+          <table class="tg">
+            <thead>
+              <tr>
+                <th class="tg-0lax" colspan="2">Datos Actuales</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="tg-buh4">Fecha:</td>
+                <td class="tg-buh4"></td>
+              </tr>
+              <tr>
+                <td class="tg-0lax">Hora:</td>
+                <td class="tg-0lax"></td>
+              </tr>
+              <tr>
+                <td class="tg-buh4">Precio:</td>
+                <td class="tg-buh4"></td>
+              </tr>
+              <tr>
+                <td class="tg-0lax" colspan="2"></td>
+              </tr>
+              <tr>
+                <td class="tg-buh4">Consumo del aparato:</td>
+                <td class="tg-buh4">xxx €</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
       </section>
     </main>
 
     <footer>
       <p>Proyecto Hack-a-Boss || Alejandro Maroto & Diego Lo Iacono || 2022</p>
     </footer>
-    <script src="/js/main.js"></script>
+    <script src="/js/diego.js"></script>
   </body>
 </html>
