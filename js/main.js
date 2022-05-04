@@ -1,9 +1,11 @@
-// Variables
-var day = new Date();
-var currentTime = day.getHours() + ':' + day.getMinutes() + ':' + day.getSeconds();
+"use strict";
 
 // Price calculation function. Receives the price and consumption.
 function priceCalculation(price, consumption) {
+    // Variables
+    const day = new Date();
+    const currentTime = day.getHours() + ':' + day.getMinutes() + ':' + day.getSeconds();
+
     // Price / Consumption
     const result = price/consumption;
     console.log(result + ' €/hour');
