@@ -53,6 +53,7 @@ main {
   padding: 2rem auto;
   margin: 0 auto;
   grid-area: main;
+  max-width: 900px;
 }
 
 footer {
