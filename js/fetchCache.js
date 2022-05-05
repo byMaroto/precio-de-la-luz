@@ -17,20 +17,20 @@ async function fetchApiCall() {
         const response = await fetch('https://api.allorigins.win/get?url=https://api.preciodelaluz.org/v1/prices/all?zone=PCB');
 
         if(response.ok){
-            const data = await response.json();
+            const dataJSON = await response.json();
+            const data = JSON.parse(dataJSON.contents);
             console.log(data);
 
-            const contentsResponse = await fetch(data.contents);
-            console.log(contentsResponse);
-
-            const contents = await contentsResponse.json();
-            console.log(contents);
+            for (let i = 0; i < 10; i++) {
+                const price = data[1].price;
+                console.log(price);
+            }
 
             // LocalStorage code
-            localStorage.setItem("data", JSON.stringify(data));
-            console.log(localStorage.getItem("data"));
+            //localStorage.setItem("data", JSON.stringify(data));
+            //console.log(localStorage.getItem("data"));
 
-            priceCalculation('500', '1000');
+            //priceCalculation('500', '1000');
         } else {
             console.log("Error");
         }
