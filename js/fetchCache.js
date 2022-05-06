@@ -1,14 +1,25 @@
 "use strict";
 
 // Price calculation function. Receives the price and consumption.
-function priceCalculation(price, consumption) {
+function priceCalculation(price, hour) {
     // Variables
     const day = new Date();
-    const currentTime = day.getHours() + ':' + day.getMinutes() + ':' + day.getSeconds();
+    const currentHour = day.getHours();
+    const currentTime = day.getHours() + ":" + day.getMinutes() + ":" + day.getSeconds();
+    let finalPrice = "";
+
+    for (let i in hour) {
+        if (currentHour == hour[i]) {
+            finalPrice = price[i];
+        }
+    }
 
     // Price / Consumption
-    const result = price/consumption;
+    const result = finalPrice/500;
     console.log(result + ' €/hour');
+
+    // LocalStorage code
+    
 }
 
 // Fetch function code
@@ -21,24 +32,16 @@ async function fetchApiCall() {
         if(response.ok){
             const dataJSON = await response.json();
             const data = JSON.parse(dataJSON.contents);
-            console.log(data);
 
             // For to get the Price and Hour and assign to the Arrays
             for (let i in data) {
                 if (data[i].hasOwnProperty('price')) {
                     prices[i] = data[i].price;
-                    hours[i] = data[i].hour;
+                    hours[i] = data[i].hour.slice(0,2);
                 }
             }
-            console.log(prices);
-            console.log(hours);
-              
 
-            // LocalStorage code
-            //localStorage.setItem("data", JSON.stringify(data));
-            //console.log(localStorage.getItem("data"));
-
-            //priceCalculation('500', '1000');
+            priceCalculation(prices, hours);
         } else {
             console.log("Error");
         }
