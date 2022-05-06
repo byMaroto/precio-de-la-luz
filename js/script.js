@@ -7,6 +7,7 @@ async function loadConsuptionData() {
 }
 
 // Price calculation function. Receives the price and consumption.
+
 function priceCalculation(price, hour) {
   // Variables
   const day = new Date();
@@ -35,8 +36,11 @@ function priceCalculation(price, hour) {
       const deviceConsuption = consumptions.find(
         (device) => device.aparato == deviceId
       );
-      document.getElementById("resultado").innerHTML =
-        deviceConsuption.consumo * result;
+      document.querySelector("#resultado").innerHTML =
+        deviceConsuption.consumo * result + "€";
+      document.querySelector("#fecha").innerHTML = day;
+      document.querySelector("#hora").innerHTML = currentTime;
+      document.querySelector("#precio").innerHTML = result.toFixed(2) + "€";
     });
   };
 
