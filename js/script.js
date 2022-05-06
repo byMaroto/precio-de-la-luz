@@ -1,5 +1,11 @@
 "use strict";
 
+async function loadConsuptionData() {
+  const jsonData = await fetch("../JSON/consumokwh.json");
+  const response = await jsonData.json();
+  return response;
+}
+
 // Price calculation function. Receives the price and consumption.
 function priceCalculation(price, hour) {
   // Variables
@@ -16,8 +22,27 @@ function priceCalculation(price, hour) {
   }
 
   // Price / Consumption
+
   const result = finalPrice / 500;
   console.log(result + " €/hour");
+
+  // change image - get item consumption - make calculation € //
+
+  const handleDeviceChange = (event) => {
+    const deviceId = event.target.value;
+    document.querySelector("#deviceImg").src = `img/${deviceId}.png`;
+    loadConsuptionData().then((consumptions) => {
+      const deviceConsuption = consumptions.find(
+        (device) => device.aparato == deviceId
+      );
+      document.getElementById("resultado").innerHTML =
+        deviceConsuption.consumo * result;
+    });
+  };
+
+  const deviceSelect = document.querySelector("#aparatos");
+
+  deviceSelect.addEventListener("change", handleDeviceChange);
 
   // LocalStorage code
 }
@@ -56,30 +81,3 @@ async function fetchApiCall() {
 //window.setInterval(function () {
 fetchApiCall();
 //}, 300000);
-
-// fetch json with data //
-
-async function loadConsuptionData() {
-  const jsonData = await fetch("../JSON/consumokwh.json");
-  const response = await jsonData.json();
-  return response;
-}
-
-// change image - get item consumption - make calculation € //
-
-const handleDeviceChange = (event) => {
-  const deviceId = event.target.value;
-  document.querySelector("#deviceImg").src = `img/${deviceId}.png`;
-  loadConsuptionData().then((consumptions) => {
-    const deviceConsuption = consumptions.find(
-      (device) => device.aparato == deviceId
-    );
-    document.getElementById("resultado").innerHTML =
-      //CAMBIAR 1 POR RESULT DEL PRECIO MW (LINEA19) //
-      deviceConsuption.consumo * 1;
-  });
-};
-
-const deviceSelect = document.querySelector("#aparatos");
-
-deviceSelect.addEventListener("change", handleDeviceChange);
