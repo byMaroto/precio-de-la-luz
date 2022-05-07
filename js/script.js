@@ -1,10 +1,15 @@
 "use strict";
 
 const day = new Date();
+const currentDay = String(day.getDate()).padStart(2, '0');
+const currentMonth = String(day.getMonth() + 1).padStart(2, '0');
+const currentYear = day.getFullYear();
 const currentHour = day.getHours();
+const currentMinutes = day.getMinutes();
+const currentSeconds = day.getSeconds();
 const currentTime =
-    day.getHours() + ":" + day.getMinutes() + ":" + day.getSeconds();
-let timeStorage = "";
+    Math.floor(new Date(currentYear + '.' + currentMonth + '.' + currentDay + ' ' + currentHour + ':' + currentMinutes + ':' + currentSeconds) / 1000);
+let timeStorage = ""; // Time Unix get from LocalStorage
 
 async function loadConsuptionData() {
   const jsonData = await fetch("../JSON/consumokwh.json");
@@ -90,7 +95,8 @@ async function fetchApiCall() {
 
 
 
-
+console.log(currentTime);
+console.log(localStorage.getItem("time"));
 // Caché logic
 if (localStorage.getItem("time") == "") {
   fetchApiCall();
@@ -98,12 +104,15 @@ if (localStorage.getItem("time") == "") {
   timeStorage = localStorage.getItem("time");
   
   // Call API every 5 minutes
-  if (timeStorage == currentTime) {
-    console.log("YES");
-  } else {
-    console.log(Math.floor(new Date('2012.08.10').getTime() / 1000));
-    console.log("------------");
+  if (timeStorage == currentTime) {} else {
+    const newTime = Math.floor(new Date(currentYear + '.' + currentMonth + '.' + currentDay + ' ' + currentHour + ':' + currentMinutes + ':' + currentSeconds) / 1000);
+    
+    if (timeStorage <= newTime - 300) {
+      fetchApiCall();
+    }
+    console.log("---------");
     console.log(timeStorage);
     console.log(currentTime);
+    console.log(newTime);
   }
 }
