@@ -79,7 +79,7 @@ async function fetchApiCall() {
           hours[i] = data[i].hour.slice(0, 2);
         }
       }
-
+      
       priceCalculation(prices, hours);
     } else {
       console.log("Error");
@@ -89,30 +89,18 @@ async function fetchApiCall() {
   }
 }
 
-
-
-
-
-
-
-console.log(currentTime);
-console.log(localStorage.getItem("time"));
 // Caché logic
 if (localStorage.getItem("time") == "") {
   fetchApiCall();
 } else {
   timeStorage = localStorage.getItem("time");
   
-  // Call API every 5 minutes
   if (timeStorage == currentTime) {} else {
     const newTime = Math.floor(new Date(currentYear + '.' + currentMonth + '.' + currentDay + ' ' + currentHour + ':' + currentMinutes + ':' + currentSeconds) / 1000);
     
+    // Call API every 5 minutes
     if (timeStorage <= newTime - 300) {
       fetchApiCall();
     }
-    console.log("---------");
-    console.log(timeStorage);
-    console.log(currentTime);
-    console.log(newTime);
   }
 }
