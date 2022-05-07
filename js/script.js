@@ -1,5 +1,11 @@
 "use strict";
 
+const day = new Date();
+const currentHour = day.getHours();
+const currentTime =
+    day.getHours() + ":" + day.getMinutes() + ":" + day.getSeconds();
+let timeStorage = "";
+
 async function loadConsuptionData() {
   const jsonData = await fetch("../JSON/consumokwh.json");
   const response = await jsonData.json();
@@ -9,11 +15,6 @@ async function loadConsuptionData() {
 // Price calculation function. Receives the price and consumption.
 
 function priceCalculation(price, hour) {
-  // Variables
-  const day = new Date();
-  const currentHour = day.getHours();
-  const currentTime =
-    day.getHours() + ":" + day.getMinutes() + ":" + day.getSeconds();
   let finalPrice = "";
 
   for (let i in hour) {
@@ -48,7 +49,9 @@ function priceCalculation(price, hour) {
 
   deviceSelect.addEventListener("change", handleDeviceChange);
 
-  // LocalStorage code
+  // LocalStorage code. Save result and currentTime.
+  localStorage.setItem("price", result);
+  localStorage.setItem("time", currentTime);
 }
 
 // Fetch function code
@@ -81,7 +84,26 @@ async function fetchApiCall() {
   }
 }
 
-// Call API every 5 minutes
-//window.setInterval(function () {
-fetchApiCall();
-//}, 300000);
+
+
+
+
+
+
+
+// Caché logic
+if (localStorage.getItem("time") == "") {
+  fetchApiCall();
+} else {
+  timeStorage = localStorage.getItem("time");
+  
+  // Call API every 5 minutes
+  if (timeStorage == currentTime) {
+    console.log("YES");
+  } else {
+    console.log(Math.floor(new Date('2012.08.10').getTime() / 1000));
+    console.log("------------");
+    console.log(timeStorage);
+    console.log(currentTime);
+  }
+}
