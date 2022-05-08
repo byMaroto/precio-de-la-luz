@@ -11,6 +11,10 @@ const currentTime =
     Math.floor(new Date(currentYear + '.' + currentMonth + '.' + currentDay + ' ' + currentHour + ':' + currentMinutes + ':' + currentSeconds) / 1000);
 let timeStorage = ""; // Time Unix get from LocalStorage
 let result = 0;
+let maxHour = 0;
+let maxPrice = 0;
+let minHour = 0;
+let minPrice = 1000; // 1000 because is just a big number to not have problems with the condition
 
 async function loadConsuptionData() {
   const jsonData = await fetch("../JSON/consumokwh.json");
@@ -74,6 +78,16 @@ async function fetchApiCall() {
         if (data[i].hasOwnProperty("price")) {
           prices[i] = data[i].price;
           hours[i] = data[i].hour.slice(0, 2);
+
+          if (prices[i] > maxPrice) {
+            maxHour = data[i].hour;
+            maxPrice = data[i].price;
+          }
+
+          if (prices[i] < minPrice) {
+            minHour = data[i].hour;
+            minPrice = data[i].price;
+          }
         }
       }
       
@@ -86,6 +100,7 @@ async function fetchApiCall() {
   }
 }
 
+// Call API every second.
 var intervalId = window.setInterval(function(){
   // Caché logic
   if (localStorage.getItem("time") == "") {
@@ -96,7 +111,7 @@ var intervalId = window.setInterval(function(){
     if (timeStorage == currentTime) {} else {
       const newTime = Math.floor(new Date(currentYear + '.' + currentMonth + '.' + currentDay + ' ' + currentHour + ':' + currentMinutes + ':' + currentSeconds) / 1000);
       
-      // Call API every 5 minutes
+      // Update data every 5 minutes
       if (timeStorage <= newTime - 300) {
         fetchApiCall();
         // LocalStorage code. Save result and currentTime.
