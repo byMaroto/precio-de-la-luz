@@ -1,14 +1,27 @@
 "use strict";
 
 const day = new Date();
-const currentDay = String(day.getDate()).padStart(2, '0');
-const currentMonth = String(day.getMonth() + 1).padStart(2, '0');
+const currentDay = String(day.getDate()).padStart(2, "0");
+const currentMonth = String(day.getMonth() + 1).padStart(2, "0");
 const currentYear = day.getFullYear();
-const currentHour = String(day.getHours()).padStart(2, '0');
-const currentMinutes = String(day.getMinutes()).padStart(2, '0');
-const currentSeconds = String(day.getSeconds()).padStart(2, '0');
-const currentTime =
-    Math.floor(new Date(currentYear + '.' + currentMonth + '.' + currentDay + ' ' + currentHour + ':' + currentMinutes + ':' + currentSeconds) / 1000);
+const currentHour = String(day.getHours()).padStart(2, "0");
+const currentMinutes = String(day.getMinutes()).padStart(2, "0");
+const currentSeconds = String(day.getSeconds()).padStart(2, "0");
+const currentTime = Math.floor(
+  new Date(
+    currentYear +
+      "." +
+      currentMonth +
+      "." +
+      currentDay +
+      " " +
+      currentHour +
+      ":" +
+      currentMinutes +
+      ":" +
+      currentSeconds
+  ) / 1000
+);
 let timeStorage = ""; // Time Unix get from LocalStorage
 let result = 0;
 let maxHour = 0;
@@ -47,11 +60,15 @@ function priceCalculation(price, hour) {
       const deviceConsuption = consumptions.find(
         (device) => device.aparato == deviceId
       );
-      document.querySelector("#resultado").innerHTML =
-        deviceConsuption.consumo * result + "€";
-      document.querySelector("#fecha").innerHTML = currentYear + '/' + currentMonth + '/' + currentDay;
-      document.querySelector("#hora").innerHTML = currentHour + ':' + currentMinutes + ':' + currentSeconds;
-      document.querySelector("#precio").innerHTML = (result * 1000000).toFixed(2) + "€";
+
+      let consumeMath = (deviceConsuption.consumo * result).toFixed(2);
+
+      document.querySelector("#resultado").innerHTML = consumeMath + "€";
+      document.querySelector("#fecha").innerHTML =
+        currentYear + "/" + currentMonth + "/" + currentDay;
+      document.querySelector("#hora").innerHTML =
+        currentHour + ":" + currentMinutes + ":" + currentSeconds;
+      document.querySelector("#precio").innerHTML = result * 1000000 + "€";
     });
   };
 
@@ -82,15 +99,17 @@ async function fetchApiCall() {
           if (prices[i] > maxPrice) {
             maxHour = data[i].hour;
             maxPrice = data[i].price;
+            document.querySelector("#maxprice").innerHTML = maxHour + "hs";
           }
 
           if (prices[i] < minPrice) {
             minHour = data[i].hour;
             minPrice = data[i].price;
+            document.querySelector("#minprice").innerHTML = minHour + "hs";
           }
         }
       }
-      
+
       priceCalculation(prices, hours);
     } else {
       console.log("Error");
@@ -101,16 +120,31 @@ async function fetchApiCall() {
 }
 
 // Call API every second.
-var intervalId = window.setInterval(function(){
+var intervalId = window.setInterval(function () {
   // Caché logic
   if (localStorage.getItem("time") == "") {
     fetchApiCall();
   } else {
     timeStorage = localStorage.getItem("time");
-    
-    if (timeStorage == currentTime) {} else {
-      const newTime = Math.floor(new Date(currentYear + '.' + currentMonth + '.' + currentDay + ' ' + currentHour + ':' + currentMinutes + ':' + currentSeconds) / 1000);
-      
+
+    if (timeStorage == currentTime) {
+    } else {
+      const newTime = Math.floor(
+        new Date(
+          currentYear +
+            "." +
+            currentMonth +
+            "." +
+            currentDay +
+            " " +
+            currentHour +
+            ":" +
+            currentMinutes +
+            ":" +
+            currentSeconds
+        ) / 1000
+      );
+
       // Update data every 5 minutes
       if (timeStorage <= newTime - 300) {
         fetchApiCall();
