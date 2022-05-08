@@ -4,12 +4,13 @@ const day = new Date();
 const currentDay = String(day.getDate()).padStart(2, '0');
 const currentMonth = String(day.getMonth() + 1).padStart(2, '0');
 const currentYear = day.getFullYear();
-const currentHour = day.getHours();
-const currentMinutes = day.getMinutes();
-const currentSeconds = day.getSeconds();
+const currentHour = String(day.getHours()).padStart(2, '0');
+const currentMinutes = String(day.getMinutes()).padStart(2, '0');
+const currentSeconds = String(day.getSeconds()).padStart(2, '0');
 const currentTime =
     Math.floor(new Date(currentYear + '.' + currentMonth + '.' + currentDay + ' ' + currentHour + ':' + currentMinutes + ':' + currentSeconds) / 1000);
 let timeStorage = ""; // Time Unix get from LocalStorage
+let result = 0;
 
 async function loadConsuptionData() {
   const jsonData = await fetch("../JSON/consumokwh.json");
@@ -30,7 +31,7 @@ function priceCalculation(price, hour) {
 
   // Price / Consumption
 
-  const result = finalPrice / 500;
+  result = finalPrice / 1000000;
   console.log(result + " €/hour");
 
   // change image - get item consumption - make calculation € //
@@ -44,19 +45,15 @@ function priceCalculation(price, hour) {
       );
       document.querySelector("#resultado").innerHTML =
         deviceConsuption.consumo * result + "€";
-      document.querySelector("#fecha").innerHTML = day;
-      document.querySelector("#hora").innerHTML = currentTime;
-      document.querySelector("#precio").innerHTML = result.toFixed(2) + "€";
+      document.querySelector("#fecha").innerHTML = currentYear + '/' + currentMonth + '/' + currentDay;
+      document.querySelector("#hora").innerHTML = currentHour + ':' + currentMinutes + ':' + currentSeconds;
+      document.querySelector("#precio").innerHTML = (result * 1000000).toFixed(2) + "€";
     });
   };
 
   const deviceSelect = document.querySelector("#aparatos");
 
   deviceSelect.addEventListener("change", handleDeviceChange);
-
-  // LocalStorage code. Save result and currentTime.
-  localStorage.setItem("price", result);
-  localStorage.setItem("time", currentTime);
 }
 
 // Fetch function code
@@ -89,18 +86,25 @@ async function fetchApiCall() {
   }
 }
 
-// Caché logic
-if (localStorage.getItem("time") == "") {
-  fetchApiCall();
-} else {
-  timeStorage = localStorage.getItem("time");
-  
-  if (timeStorage == currentTime) {} else {
-    const newTime = Math.floor(new Date(currentYear + '.' + currentMonth + '.' + currentDay + ' ' + currentHour + ':' + currentMinutes + ':' + currentSeconds) / 1000);
+var intervalId = window.setInterval(function(){
+  // Caché logic
+  if (localStorage.getItem("time") == "") {
+    fetchApiCall();
+  } else {
+    timeStorage = localStorage.getItem("time");
     
-    // Call API every 5 minutes
-    if (timeStorage <= newTime - 300) {
-      fetchApiCall();
+    if (timeStorage == currentTime) {} else {
+      const newTime = Math.floor(new Date(currentYear + '.' + currentMonth + '.' + currentDay + ' ' + currentHour + ':' + currentMinutes + ':' + currentSeconds) / 1000);
+      
+      // Call API every 5 minutes
+      if (timeStorage <= newTime - 300) {
+        fetchApiCall();
+        // LocalStorage code. Save result and currentTime.
+        localStorage.setItem("price", result);
+        localStorage.setItem("time", currentTime);
+      } else {
+        fetchApiCall();
+      }
     }
   }
-}
+}, 1000);
