@@ -61,7 +61,7 @@ function priceCalculation(price, hour) {
         (device) => device.aparato == deviceId
       );
 
-      let consumeMath = (deviceConsuption.consumo * result).toFixed(2);
+      let consumeMath = (deviceConsuption.consumo * result).toFixed(3);
 
       document.querySelector("#resultado").innerHTML = consumeMath + "€";
       document.querySelector("#fecha").innerHTML =
