@@ -68,6 +68,10 @@
     "consumo": 250
   },
   {
+    "aparato": "ventilador",
+    "consumo": 90
+  },
+  {
     "aparato": "plancha",
     "consumo": 1500
   },
