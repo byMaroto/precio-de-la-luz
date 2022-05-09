@@ -22,7 +22,7 @@ h2 {
 }
 
 p {
-  margin: 1rem 0;
+  margin-bottom: 1rem;
 }
 
 body {
@@ -33,26 +33,31 @@ body {
     "header"
     "main"
     "footer";
+  background-image: url("../img/shattered.png");
+  background-repeat: repeat;
 }
 
 header,
 footer {
-  background-color: black;
+  background-color: #030b38;
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 header {
   grid-area: header;
+  background-image: url("../img/header.jpg");
+  background-size: cover;
 }
 
 main {
   padding: 2rem auto;
   margin: 0 auto;
   grid-area: main;
+  max-width: 900px;
 }
 
 footer {
@@ -64,19 +69,22 @@ img {
 }
 
 .flex-container {
+  margin-top: 2rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 2rem;
+  padding: 1rem 1rem 2rem 1rem;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px grey;
 }
 
 .flex-container > section {
-  padding: 8px;
+  padding: 0px;
 }
 
 .flex-top {
   flex-basis: 100vw;
-  height: 120px;
 }
 
 .flex-left {
@@ -84,5 +92,57 @@ img {
 }
 
 .flex-right {
-  flex-grow: 5;
+  flex-grow: 2;
+  max-width: 500px;
+}
+
+.tg {
+  border: none;
+  border-collapse: collapse;
+  border-color: #ccc;
+  border-spacing: 0;
+  min-width: 100%;
+}
+.tg td {
+  background-color: #fff;
+  border-color: #ccc;
+  border-style: solid;
+  border-width: 0px;
+  color: #333;
+  font-size: 14px;
+  overflow: hidden;
+  padding: 10px 5px;
+  word-break: normal;
+}
+.tg th {
+  background-color: #1f2f51;
+  border-color: #ccc;
+  border-style: solid;
+  border-width: 0px;
+  color: white;
+  overflow: hidden;
+  padding: 10px 5px;
+  word-break: normal;
+}
+.tg .tg-buh4 {
+  background-color: #f9f9f9;
+  text-align: left;
+  vertical-align: top;
+}
+.tg .tg-0lax {
+  text-align: left;
+  vertical-align: top;
+}
+
+#resultado {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#minprice {
+  color: green;
+}
+
+#maxprice {
+  color: red;
 }
