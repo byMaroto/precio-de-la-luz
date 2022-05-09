@@ -36,7 +36,6 @@ async function loadConsuptionData() {
 }
 
 // Price calculation function. Receives the price and consumption.
-
 function priceCalculation(price, hour) {
   let finalPrice = "";
 
@@ -47,9 +46,7 @@ function priceCalculation(price, hour) {
   }
 
   // Price / Consumption
-
   result = finalPrice / 1000000;
-  console.log(result + " €/hour");
 
   // change image - get item consumption - make calculation € //
 
@@ -119,41 +116,43 @@ async function fetchApiCall() {
   }
 }
 
-// Call API every second.
-var intervalId = window.setInterval(function () {
-  // Caché logic
-  if (localStorage.getItem("time") == "") {
-    fetchApiCall();
+// Caché logic
+if (!localStorage.getItem("time")) {
+  fetchApiCall();
+
+  // LocalStorage code. Save result and currentTime.
+  localStorage.setItem("price", result);
+  localStorage.setItem("time", currentTime);
+} else {
+  timeStorage = localStorage.getItem("time");
+
+  if (timeStorage == currentTime) {
   } else {
-    timeStorage = localStorage.getItem("time");
+    const newTime = Math.floor(
+      new Date(
+        currentYear +
+          "." +
+          currentMonth +
+          "." +
+          currentDay +
+          " " +
+          currentHour +
+          ":" +
+          currentMinutes +
+          ":" +
+          currentSeconds
+      ) / 1000
+    );
 
-    if (timeStorage == currentTime) {
+    // Update data every 5 minutes
+    if (timeStorage <= newTime - 300) {
+      fetchApiCall();
+      
+      // LocalStorage code. Save result and currentTime.
+      localStorage.setItem("price", result);
+      localStorage.setItem("time", currentTime);
     } else {
-      const newTime = Math.floor(
-        new Date(
-          currentYear +
-            "." +
-            currentMonth +
-            "." +
-            currentDay +
-            " " +
-            currentHour +
-            ":" +
-            currentMinutes +
-            ":" +
-            currentSeconds
-        ) / 1000
-      );
-
-      // Update data every 5 minutes
-      if (timeStorage <= newTime - 300) {
-        fetchApiCall();
-        // LocalStorage code. Save result and currentTime.
-        localStorage.setItem("price", result);
-        localStorage.setItem("time", currentTime);
-      } else {
-        fetchApiCall();
-      }
+      fetchApiCall();
     }
   }
-}, 1000);
+}
