@@ -75,6 +75,8 @@ img {
   flex-wrap: wrap;
   padding: 1rem 1rem 2rem 1rem;
   background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px grey;
 }
 
 .flex-container > section {
@@ -91,7 +93,6 @@ img {
 
 .flex-right {
   flex-grow: 2;
-  border: solid 2px grey;
   max-width: 500px;
 }
 
@@ -131,4 +132,17 @@ img {
 .tg .tg-0lax {
   text-align: left;
   vertical-align: top;
+}
+
+#resultado {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#minprice {
+  color: green;
+}
+
+#maxprice {
+  color: red;
 }
